@@ -1,5 +1,5 @@
-AMI/Clean Compile   DSDT	Patches/ami_clean_compile.txt
-Add dsdt/HDEF       DSDT	Patches/add_hdef.txt
+AMI/Clean Compile DSDT	Patches/ami_clean_compile.txt
+Add dsdt/HDEF DSDT	Patches/add_hdef.txt
 Enable Audio ID: 1  DSDT	Patches/hdef_audio_id_1.txt
 Enable Audio ID: 2  DSDT	Patches/hdef_audio_id_2.txt
 
