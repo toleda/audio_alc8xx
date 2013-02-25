@@ -1,0 +1,4 @@
+Patches/AMI/dsdt/Clean Compile  DSDT	ami_clean_compile.txt
+Patches/Add dsdt/HDEF           DSDT	add_hdef.txt
+Patches/Enable Audio ID: 1      DSDT	hdef_audio_id_1.txt
+Patches/Enable Audio ID: 2      DSDT	hdef_audio_id_2.txt
