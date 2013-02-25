@@ -1,0 +1,74 @@
+# Maintained by: toleda for: github.com/toleda/audio_alc8xx
+# Add_HDEF, for dsdts with no HDEF, default Audio_ID: 1
+# Note: For Audio ID: 2, edit 0x01, 0x001, 0x00, 0x00 to 0x02, 0x001, 0x00, 0x00
+#
+# 1. Add method DTGP to the main block - if not present
+# 2. Add HDEF/layout-id=1
+#
+# 1. Add method DTGP to the main block, it's used by other patches
+into method label DTGP remove_entry;
+into definitionblock code_regex . insert
+begin
+Method (DTGP, 5, NotSerialized)\n
+{\n
+    If (LEqual (Arg0, Buffer (0x10)\n
+            {\n
+                /* 0000 */    0xC6, 0xB7, 0xB5, 0xA0, 0x18, 0x13, 0x1C, 0x44, \n
+                /* 0008 */    0xB0, 0xC9, 0xFE, 0x69, 0x5E, 0xAF, 0x94, 0x9B\n
+            }))\n
+    {\n
+        If (LEqual (Arg1, One))\n
+        {\n
+            If (LEqual (Arg2, Zero))\n
+            {\n
+                Store (Buffer (One)\n
+                    {\n
+                        0x03\n
+                    }, Arg4)\n
+                Return (One)\n
+            }\n
+            If (LEqual (Arg2, One))\n
+            {\n
+                Return (One)\n
+            }\n
+        }\n
+    }\n
+    Store (Buffer (One)\n
+        {\n
+            0x00\n
+        }, Arg4)\n
+    Return (Zero)\n
+}
+end;
+# 2. Add HDEF/layout-id=379
+into device name_adr 0x001B0000 parent_label PCI0 remove_entry;
+into device label PCI0 insert
+begin
+Device (HDEF) \n
+{ \n
+   Name (_ADR, 0x001B0000) \n 
+   Name (_PRW, Package (0x02) \n
+   { \n
+        0x09, \n
+        0x05 \n
+    }) \n
+    Method (_DSM, 4, NotSerialized)\n
+    {\n
+        Store (Package (0x04)\n
+ 	     {\n
+                "layout-id", \n
+                Buffer (0x04)\n
+                {\n
+                    0x01, 0x001, 0x00, 0x00\n
+                }, \n
+                "PinConfigurations", \n
+                Buffer (Zero) {}\n
+            }, Local0)\n
+        DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))\n
+        Return (Local0)\n
+    }\n
+}\n
+end;
+into definitionblock code_regex . insert
+begin Store ("add_hdef dsdt edits by toleda, github.com/toleda/audio_alc8xx, 2-25-2013", Debug) end
+
