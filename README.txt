@@ -7,6 +7,8 @@ Audio_ID: 1 supports 5 and 6 port ALC8xx onboard and/or AMD/Nvidia HDMI audio
 Audio_ID: 2 supports 3 port ALC8xx onboard and/or AMD/Nvidia HDMI audio
 Audio_ID: 3 supports 3, 5 and 6 port ALC8xx onboard and HD3000/HD4000 HDMI audio
 
+More information, see Optimized_AppleHDA_for_ALC8xx.pdf
+
 The are two techniques to enable the Optimized AppleHDA.kext:
 1. no dsdt/audio enabler = Audio_ID
 1a. Audio_ID = 1, HDAEnabler1.kext
@@ -17,7 +19,30 @@ The are two techniques to enable the Optimized AppleHDA.kext:
 2c. Audio_ID = 3, 0x03, 0x00, 0x00, 0x00, 0x00
 *dsdt/HDEF/layout-id edits, see How_to_Add/Edit_dsdt/HDEF.pdf
 
-More information, see Optimized_AppleHDA_for_ALC8xx.pdf
+How to Add or Edit dsdt/HDEF
+Requires: MaciASL - http://sourceforge.net/projects/maciasl/?source=navbar
+
+Procedures
+1. To extract a dsdt, MaciASL/File/New from ACPI/DSDT
+2. For a newly extracted dsdt, MaciASL/Patch/Apply AMI/Clean Compile to fix errors, warnings and remarks.  Ignore remaining warnings and remarks. Seek Troubleshooting 2. for remaining compiler errors.
+3. If no dsdt/HDEF, MaciASL/Patch/Apply/Add dsdt/HDEF, installs Audio_ID: 1. For Audio_ID: 2, see Audio_ID: 2 below.
+4. To edit dsdt/HDEF/layout-id for Audio_ID: 1, MaciASL/Patch/Apply/Enable Audio_ID: 1.
+5. To edit dsdt/HDEF/layout-id for Audio_ID: 2, MaciASL/Patch/Apply/Enable Audio_ID: 2.
+
+Patches
+1. AMI/Clean Compile - Fixes compiler errors, warnings and remarks (AMI dsdt only)
+2. Add dsdt/HDEF - Adds Device (HDEF) to any dsdt, installs Audio ID: 1  (no HDEF only)
+3. Enable Audio ID: 1 - Edits dsdt/HDEF/layout-id to 1 (hex: 0x01, 0x00, 0x00, 0x00)
+4. Enable Audio ID: 2 - Edits dsdt/HDEF/layout-id to 2 (hex: 0x02, 0x00, 0x00, 0x00)
+
+Usage
+1. MaciASL/Patch/toleda/Select
+2. MaciASL/Patch/Apply
+3. MaciASL/Patch/Close
+4. MaciASL/Compile
+
+Installation - edited dsdt/HDEF to Extra
+1. 1. MaciASL/File/Save As…/ACPI Machine Language Binary/Extra/dsdt. aml (add extension)
 
 Installation - Optimized AppleHDA.kext http://www.tonymacx86.com/downloads.php?do=cat&id=3 MultiBest - Mountain Lion
 1. no dsdt/audio enabler
