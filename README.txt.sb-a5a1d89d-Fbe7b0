@@ -21,8 +21,6 @@ The are two techniques to enable the Optimized AppleHDA.kext:
 
 How to Add or Edit dsdt/HDEF
 Requires: MaciASL - http://sourceforge.net/projects/maciasl/?source=navbar
-Configuration: MaciASL/Preferences/Sources/+/
-URL: https://raw.github.com/toleda/audio_alc8xx/master
 
 Procedures
 1. To extract a dsdt, MaciASL/File/New from ACPI/DSDT
