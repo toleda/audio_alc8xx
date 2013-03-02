@@ -44,7 +44,7 @@ Usage
 4. MaciASL/Compile
 
 Installation - edited dsdt/HDEF to Extra
-1. 1. MaciASL/File/Save As…/ACPI Machine Language Binary/Extra/dsdt. aml (add extension)
+1. MaciASL/File/Save As…/ACPI Machine Language Binary/Extra/dsdt. aml (add extension)
 
 Installation - Optimized AppleHDA.kext http://www.tonymacx86.com/downloads.php?do=cat&id=3 MultiBest - Mountain Lion
 1. no dsdt/audio enabler
