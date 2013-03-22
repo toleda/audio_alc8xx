@@ -6,8 +6,7 @@ This guide enables OS X Realtek ALC8xx onboard audio on Intel based motherboards
 Audio_ID: 1 supports 5 and 6 port ALC8xx onboard and/or AMD/Nvidia HDMI audio  
 Audio_ID: 2 supports 3 port ALC8xx onboard and/or AMD/Nvidia HDMI audio
 Audio_ID: 3 supports 3, 5 and 6 port ALC8xx onboard and HD3000/HD4000 HDMI audio
-
-More information, see Optimized_AppleHDA_for_ALC8xx.pdf
+ML HDMI 
 
 The are two techniques to enable the Optimized AppleHDA.kext:
 1. no dsdt/audio enabler = Audio_ID
